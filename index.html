@@ -3,336 +3,673 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Stefanie Souza Vidal</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Portfólio | Stefanie Souza Vidal</title>
 
+    <!-- Google Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         :root {
-            --pallete1: #462b6e;
-            --pallete2: #6e4f84;
-            --pallete3: #8673a4;
-            --pallete4: #6a457a;
-            --pallete5: #d7d0e3;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-            color: var(--pallete5);
+            --primary-purple: #462b6e;
+            --secondary-purple: #6e4f84;
+            --accent-purple: #8673a4;
+            --light-purple: #f3f0f7;
+            --dark-text: #2b2b2b;
         }
 
         body {
-            background-color: var(--pallete2);
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--dark-text);
         }
 
-        main {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            color: white;
+            border-radius: 0 0 24px 24px;
+            padding: 3rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .profile {
+        .profile-img {
+            border: 4px solid white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            max-width: 200px;
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            background-color: #ffffff;
+        }
+
+        .section-title {
+            color: var(--primary-purple);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             display: flex;
-            flex-direction: row;
-            justify-content: center;
             align-items: center;
-            background-color: var(--pallete1);
-            padding: 30px 20px;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .imagem {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .texto {
-            display: flex;
-            flex-direction: column;
-            max-width: 600px;
-        }
-
-        .icons {
-            display: flex;
-            flex-direction: column;
             gap: 10px;
         }
 
-        .icons img {
-            width: 35px;
-            height: 35px;
+        .badge-tech {
+            background-color: var(--light-purple);
+            color: var(--primary-purple);
+            font-weight: 500;
+            border: 1px solid var(--accent-purple);
+            margin: 2px;
         }
 
-        h1 {
-            font-size: 45px;
-            font-family: "The Nautigal", cursive;
-            font-weight: 700;
+        .badge-ai {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
         }
 
-        h2 {
-            font-size: 32px;
-            font-family: "The Nautigal", cursive;
-            font-weight: 700;
-            margin-bottom: 10px;
+        /* Estilização dos Acordeões */
+        .accordion-button:not(.collapsed) {
+            background-color: var(--light-purple);
+            color: var(--primary-purple);
+            box-shadow: none;
         }
 
-        h3 {
-            font-size: 24px;
-            font-family: "The Nautigal", cursive;
-            font-weight: 400;
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(70, 43, 110, 0.25);
         }
 
-        .carrossel {
-            width: 100%;
-            padding: 20px 0;
-        }
-
-        .row {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            align-items: flex-start;
-            gap: 20px;
-            padding: 20px;
-            flex-wrap: wrap;
-        }
-
-        .bloco {
-            display: none;
-            width: 100%;
-        }
-
-        #bloco1, .bloco:target {
-            display: flex;
-        }
-
-        .bloco:target ~ #bloco1 {
-            display: none;
-        }
-
-        .bloco a.setas {
-            margin: auto 0;
-            text-decoration: none;
-        }
-
-        .bloco a.setas button {
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 24px;
-            background-color: var(--pallete3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .coluna {
-            flex: 1;
-            min-width: 280px;
-            padding: 15px;
-            background-color: rgba(70, 43, 110, 0.3);
-            border-radius: 8px;
-        }
-
-        .card-item {
-            margin-bottom: 15px;
-            border-left: 3px solid var(--pallete3);
-            padding-left: 10px;
-        }
-
-        .card-item h4 {
-            font-size: 16px;
-            color: #fff;
-        }
-
-        .card-item p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .accordion {
-            background-color: var(--pallete3);
-            color: var(--pallete1);
-            font-weight: bold;
-            cursor: pointer;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 14px;
-            transition: 0.3s;
-            margin-top: 5px;
-            border-radius: 4px;
-        }
-
-        .active, .accordion:hover {
-            background-color: var(--pallete5);
-            color: var(--pallete1);
-        }
-
-        .panel {
-            padding: 10px 15px;
-            display: none;
-            background-color: var(--pallete1);
+        .accordion-item {
+            border: 1px solid rgba(134, 115, 164, 0.2);
+            border-radius: 8px !important;
+            margin-bottom: 12px;
             overflow: hidden;
-            border-radius: 0 0 4px 4px;
-        }
-
-        .panel ul {
-            list-style-position: inside;
-            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
-    <main>
-        <section class="profile">
-            <img class="imagem" src="https://scontent-gru1-2.xx.fbcdn.net/v/t39.30808-6/251879924_4155909487848122_4981543921767611189_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeEiKLgAdJyRCCuuYSgRp8JFTXbGMr3pcmlNdsYyvelyaWYjudVyVB0s1gCJMzUJ4Ajfm1exL69MQPbTKoeG1iFn&_nc_ohc=dzdRevwwHPUAX8lrDSB&_nc_ht=scontent-gru1-2.xx&oh=00_AT-TPvfkrLm-31yMNVunk34oiZhKm6-YVDkZAsmo644KTw&oe=61DDACEB" alt="Stefanie Souza">
-            <div class="texto">
-                <h1>Stefanie Souza Vidal</h1>
-                <h2>Backend Software Engineer</h2>
-                <h3>Cloud Computing & Arquitetura de Microsserviços</h3>
+
+<!-- Header / Bio -->
+<header class="header-section mb-5">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-md-3 text-center">
+                <img src="https://github.com/MatsuStefanie.png" class="img-fluid rounded-circle profile-img"
+                     alt="Foto de perfil de Stefanie Souza Vidal">
             </div>
-            <div class="icons">
-                <a href="https://www.linkedin.com/in/stefaniedasilvasouzamatsu" target="_blank">
-                    <img src="https://icones.pro/wp-content/uploads/2021/03/icone-linkedin-ronde-violet.png" alt="Linkedin">
-                </a>
-                <a href="mailto:stefaniedasilvasouza.matsu@gmail.com">
-                    <img src="https://icones.pro/wp-content/uploads/2021/03/icone-gmail-logo-png-roxo.png" alt="Gmail">
-                </a>
-                <a href="https://github.com/MatsuStefanie" target="_blank">
-                    <img src="https://icones.pro/wp-content/uploads/2021/06/icone-github-violet.png" alt="GitHub">
-                </a>
-                <a href="https://br.pinterest.com/matsustefanie" target="_blank">
-                    <img src="https://icones.pro/wp-content/uploads/2021/07/logo-pinterest-violet.png" alt="Pinterest">
-                </a>
+            <div class="col-md-9 text-center text-md-start">
+                <h1 class="fw-bold mb-1">Stefanie Souza Vidal</h1>
+                <h4 class="fw-light text-light mb-3">Desenvolvedora Backend | Java | Spring Framework</h4>
+
+                <p class="text-light opacity-90 mb-2">
+                    Sou Stefanie, paulista e Desenvolvedora Backend com cerca de 3 anos de experiência no mercado
+                    financeiro. Atuo na construção e evolução de sistemas críticos utilizando Java, Kotlin e Spring
+                    Boot, com foco em arquitetura de microsserviços, ecossistema AWS e comunicação assíncrona via Amazon
+                    SQS e SNS.
+                </p>
+
+                <p class="text-light opacity-90 mb-2">
+                    Tenho forte histórico em projetos de modernização de software, atuando na migração de dados legados
+                    para a nuvem, atualização de versões (Java 11 para 21) e alta cobertura de testes unitários com
+                    Mockito, Java, Kotlin e Python.
+                </p>
+
+                <p class="text-light opacity-90 mb-4">
+                    Movida pela vontade de impactar positivamente a vida das pessoas através da tecnologia, combino a
+                    engenharia de software com o interesse por UX, acessibilidade e inclusão, buscando criar soluções
+                    robustas, eficientes e verdadeiramente inclusivas.
+                </p>
+
+                <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+                    <a href="https://github.com/MatsuStefanie" target="_blank"
+                       class="btn btn-outline-light btn-sm rounded-pill"><i class="fab fa-github me-1"></i> GitHub -
+                        Stefanie Vidal</a>
+                    <a href="https://www.linkedin.com/in/stefaniedasilvasouzamatsu/" target="_blank"
+                       class="btn btn-outline-light btn-sm rounded-pill"><i class="fab fa-linkedin me-1"></i> LinkedIn -
+                        Stefanie Vidal</a>
+                    <a href="mailto:stefaniesouzavidal@gmail.com" class="btn btn-outline-light btn-sm rounded-pill"><i
+                            class="fas fa-envelope me-1"></i> stefaniesouzavidal@gmail.com</a>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</header>
 
-        <section class="carrossel">
-            <!-- BLOCO 1: Experiência Profissional e Atualmente -->
-            <section class="row bloco" id="bloco1">
-                <a href="#bloco2" class="setas"><button>&lt;</button></a>
-                
-                <div class="coluna">
-                    <h2>Experiência Profissional</h2>
-                    <div class="card-item">
-                        <h4>Zup Innovation (Projeto Itaú)</h4>
-                        <p><strong>Backend Software Engineer</strong> | Maio/2024 - Presente</p>
-                        <p>Migração para a AWS, modernização de sistemas legados Java, criação de microsserviços resilientes e arquitetura distribuída.</p>
+<div class="container pb-5">
+
+    <!-- Linha Superior: Habilidades + Formação -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="card card-custom h-100 p-4">
+                <h3 class="section-title fs-4"><i class="fas fa-code"></i> Habilidades</h3>
+                <div>
+                    <span class="badge badge-tech">Desenvolvimento de API</span>
+                    <span class="badge badge-tech">Injeção de dependência</span>
+                    <span class="badge badge-tech">Java (11, 17, 21)</span>
+                    <span class="badge badge-tech">JPA - JDBC</span>
+                    <span class="badge badge-tech">Kotlin</span>
+                    <span class="badge badge-tech">Python</span>
+                    <span class="badge badge-tech">Java Reflection</span>
+                    <span class="badge badge-tech">SOLID</span>
+                    <span class="badge badge-tech">Arquitetura Hexagonal</span>
+                    <span class="badge badge-tech">Spring Framework</span>
+                    <span class="badge badge-tech">Spring Boot 3</span>
+                    <span class="badge badge-tech">Mockito</span>
+                    <span class="badge badge-tech">AWS (Lambda, SQS, SNS, S3)</span>
+                    <span class="badge badge-tech">Terraform</span>
+                    <span class="badge badge-tech">Docker</span>
+                    <span class="badge badge-tech">MongoDB</span>
+                    <span class="badge badge-tech">SQL Server</span>
+                    <span class="badge badge-tech">GitFlow</span>
+                    <span class="badge badge-tech">Angular 8</span>
+                    <span class="badge badge-tech">Angular Material</span>
+                    <span class="badge badge-tech">ASP</span>
+                    <span class="badge badge-tech">Sharepoint</span>
+                    <span class="badge badge-tech">Typescript</span>
+                    <span class="badge badge-tech">Gestão de Contas</span>
+                    <span class="badge badge-tech">Gestão de Equipes</span>
+                    <span class="badge badge-tech">Monitoramento de Saúde de Sistemas</span>
+                    <span class="badge badge-tech">Processo ITIL</span>
+                    <span class="badge badge-tech">SCRUM</span>
+                    <span class="badge badge-tech">Confluence</span>
+                    <span class="badge badge-tech">IuQualy</span>
+                    <span class="badge badge-tech">StackSpot</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card card-custom h-100 p-4">
+                <h3 class="section-title fs-4"><i class="fas fa-graduation-cap"></i> Formações & Certificações</h3>
+
+                <div class="mb-3">
+                    <span class="badge bg-success mb-1">Certificação Oficial</span>
+                    <h6 class="fw-bold mb-0">AWS Certified Cloud Practitioner</h6>
+                    <small class="text-muted">Amazon Web Services — Jan/2026</small>
+                </div>
+
+                <hr>
+
+                <p class="mb-2"><strong>Pós-Graduação em Projetos em Cloud Computing</strong> - Concluído 2025</p>
+                <p class="mb-2"><strong>Análise e Desenvolvimento de Sistemas</strong> - FATEC - Trancado (2024)
+                </p>
+                <p class="mb-2"><strong>Tecnólogo em Redes de Computadores</strong> - UNINOVE - Concluído (2017/2021)
+                </p>
+                <p class="mb-0"><strong>Técnico em Análise e Desenvolvimento de Sistemas</strong> - ETEC - Concluído
+                    (2015/2016)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experiências Profissionais com Acordeões -->
+    <div class="row g-4 mb-5">
+        <div class="col-12">
+            <div class="card card-custom p-4">
+                <h3 class="section-title fs-4"><i class="fas fa-briefcase"></i> Experiência Profissional</h3>
+
+                <div class="accordion" id="accordionExperiencias">
+
+                    <!-- Zup Innovation -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingZup">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseZup" aria-expanded="true" aria-controls="collapseZup">
+                                <div>
+                                    <strong class="fs-6">Zup Innovation — Backend Software Engineer (Projeto
+                                        Itaú)</strong>
+                                    <span class="badge bg-primary ms-2">mai/2024 – atual</span>
+                                    <div class="small text-muted fw-normal mt-1">Migração Mainframe para AWS,
+                                        modernização Java 17/21 e microsserviços de cartões (SQS/SNS/Lambda).
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapseZup" class="accordion-collapse collapse show" aria-labelledby="headingZup"
+                             data-bs-parent="#accordionExperiencias">
+                            <div class="accordion-body">
+                                <div class="mb-3 p-3 bg-light rounded">
+                                    <h6 class="fw-bold text-primary"><i class="fas fa-layer-group me-1"></i> Itaú —
+                                        Acervos</h6>
+                                    <ul class="small mb-0">
+                                        <li>Desenvolvimento de soluções backend para migração de arquivos provenientes
+                                            do mainframe para a AWS, utilizando Java 17, Spring Boot 3 e serviços AWS.
+                                        </li>
+                                        <li>Desenvolvimento de um motor de atualização e processamento de arquivos,
+                                            permitindo a geração de saídas em diferentes formatos, incluindo CSV, TXT,
+                                            PDF e XML, além do mapeamento e processamento de arquivos posicionais,
+                                            garantindo a correta interpretação dos campos durante a migração.
+                                        </li>
+                                        <li>Implementação de validações para assegurar a consistência e integridade dos
+                                            arquivos migrados entre o sistema legado e o ambiente cloud.
+                                        </li>
+                                        <li>Atuação na modernização de aplicações de Java 11 para Java 21, incluindo
+                                            atualização de bibliotecas, resolução de incompatibilidades e adequação do
+                                            código à nova versão.
+                                        </li>
+                                        <li>Contribuição para a continuidade e longevidade das aplicações, mantendo
+                                            compatibilidade com versões atuais das bibliotecas e reduzindo dependências
+                                            de versões legadas.
+                                        </li>
+                                        <li>Desenvolvimento e manutenção de testes unitários utilizando Mockito,
+                                            buscando cobertura entre 95% e 100% nas aplicações sob responsabilidade.
+                                        </li>
+                                        <li>Criação e atualização de testes automatizados em Java, Kotlin e Python,
+                                            acompanhando evoluções e alterações das aplicações.
+                                        </li>
+                                        <li>Utilização de Java Reflection em cenários específicos para validação de
+                                            comportamentos de métodos privados durante os testes.
+                                        </li>
+                                        <li>Validação de fluxos entre serviços utilizando IuQualy, coletando evidências
+                                            de execução a partir de logs, status e informações dos serviços na AWS.
+                                        </li>
+                                        <li>Atuação na migração do portal interno da equipe para SharePoint, utilizando
+                                            automações disponibilizadas pelo StackSpot para preservação e organização da
+                                            documentação relevante.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="p-3 bg-light rounded">
+                                    <h6 class="fw-bold text-primary"><i class="fas fa-credit-card me-1"></i> Itaú —
+                                        Cartões</h6>
+                                    <ul class="small mb-0">
+                                        <li>Atuação no desenvolvimento e evolução de sistemas relacionados à migração de
+                                            cartões de crédito.
+                                        </li>
+                                        <li>Implementação e configuração de filas e tópicos utilizando Amazon SQS e SNS,
+                                            apoiando a comunicação assíncrona entre serviços.
+                                        </li>
+                                        <li>Desenvolvimento e configuração de AWS Lambda para ativação de microsserviços
+                                            e processamento de fluxos relacionados ao sistema de cartões.
+                                        </li>
+                                        <li>Adequação de bibliotecas e integrações para suporte à evolução das regras de
+                                            negócio, incluindo adaptação para CNPJ alfanumérico.
+                                        </li>
+                                        <li>Contribuição para a modernização e longevidade das aplicações por meio da
+                                            atualização de versões e dependências utilizadas pelos serviços.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-item">
-                        <h4>PicPay / Banco Original</h4>
-                        <p><strong>Software Engineer</strong></p>
-                        <p>Atuação no desenvolvimento de ecossistema financeiro, microsserviços em Java/Kotlin e rotinas de integrações escaláveis.</p>
+
+                    <!-- Pausa Profissional -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPausa">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapsePausa" aria-expanded="false" aria-controls="collapsePausa">
+                                <div>
+                                    <strong class="fs-6">Desenvolvimento Profissional — Pausa na Carreira</strong>
+                                    <span class="badge bg-light text-dark border ms-2">nov/2023 – abr/2024</span>
+                                    <div class="small text-muted fw-normal mt-1">Estudos intensivos e aprofundamento
+                                        técnico focado em Java e Spring Boot 3.
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapsePausa" class="accordion-collapse collapse" aria-labelledby="headingPausa"
+                             data-bs-parent="#accordionExperiencias">
+                            <div class="accordion-body">
+                                <p class="small mb-0">Período dedicado ao aprofundamento técnico em Java e Spring Boot
+                                    3, com foco na continuidade da carreira em desenvolvimento backend.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PicPay -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPicPay">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapsePicPay" aria-expanded="false"
+                                    aria-controls="collapsePicPay">
+                                <div>
+                                    <strong class="fs-6">Banco PicPay — Backend Software Engineer</strong>
+                                    <span class="badge bg-secondary ms-2">mar 2023 | nov 2023</span>
+                                    <div class="small text-muted fw-normal mt-1">Desenvolvimento de APIs para área de
+                                        seguros, Arquitetura Hexagonal, MongoDB e AWS S3.
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapsePicPay" class="accordion-collapse collapse" aria-labelledby="headingPicPay"
+                             data-bs-parent="#accordionExperiencias">
+                            <div class="accordion-body">
+                                <ul class="small mb-0">
+                                    <li>Desenvolvimento de rotas de disponibilidade de templates utilizados na
+                                        composição das telas de seguros do aplicativo.
+                                    </li>
+                                    <li>Implementação de integrações com MongoDB e Amazon S3 para disponibilização dos
+                                        templates utilizados pela aplicação.
+                                    </li>
+                                    <li>Desenvolvimento e evolução de serviços backend responsáveis pela
+                                        disponibilização de recursos utilizados pelas aplicações de seguros.
+                                    </li>
+                                    <li>Atuação na área de Pessoa Física, consolidando a transição profissional de
+                                        desenvolvimento frontend para backend com Java.
+                                    </li>
+                                    <li>Utilização de Spring Framework e arquitetura hexagonal como base para os
+                                        projetos, aprimorando a qualidade do código e facilitando a manutenção.
+                                    </li>
+                                    <li>Realização de testes unitários utilizando o framework Mockito e testes na
+                                        plataforma Qase para assegurar a eficácia e confiabilidade do software.
+                                    </li>
+                                    <li>Documentação precisa e atualizada utilizando Confluence interno para manter a
+                                        transparência da equipe.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banco Original -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOriginal">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOriginal" aria-expanded="false"
+                                    aria-controls="collapseOriginal">
+                                <div>
+                                    <strong class="fs-6">Banco Original — Analista de Sistemas & Frontend
+                                        Developer</strong>
+                                    <span class="badge bg-secondary ms-2">nov 2021 | mar 2023</span>
+                                    <div class="small text-muted fw-normal mt-1">Análise técnica multidisciplinar
+                                        (Java/Kotlin/Android), suporte a parceiros e desenvolvimento web em Angular.
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapseOriginal" class="accordion-collapse collapse" aria-labelledby="headingOriginal"
+                             data-bs-parent="#accordionExperiencias">
+                            <div class="accordion-body">
+
+                                <!-- Cargo 1: Analista de Sistemas -->
+                                <div class="mb-3 p-3 bg-light rounded">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold text-primary mb-0"><i class="fas fa-code-branch me-1"></i>
+                                            Analista de Sistemas</h6>
+                                        <span class="badge text-bg-light border">nov 2022 | mar 2023</span>
+                                    </div>
+                                    <ul class="small mb-2">
+                                        <li>Análise técnica e suporte em soluções multidisciplinares abrangendo
+                                            desenvolvimento backend (Java) e mobile (Android nativo com Kotlin),
+                                            fortalecendo a visão arquitetural do sistema.
+                                        </li>
+                                        <li>Atualização e refatoração de layouts e templates de cartões para a esteira
+                                            de Pessoa Física, priorizando usabilidade, funcionalidade e padronização
+                                            visual.
+                                        </li>
+                                        <li>Sustentação e suporte técnico contínuo para ecossistemas de integrações com
+                                            parceiros comerciais, garantindo alta performance, estabilidade e
+                                            comunicação eficiente entre APIs.
+                                        </li>
+                                        <li>Atuação focada na garantia de qualidade, entregas resilientes e alinhamento
+                                            do software com as necessidades e expectativas do usuário final.
+                                        </li>
+                                    </ul>
+                                    <div class="mt-2">
+                                        <small class="fw-bold text-muted me-1">Competências principais:</small>
+                                        <span class="badge badge-tech">Kotlin</span>
+                                        <span class="badge badge-tech">Desenvolvimento de API</span>
+                                        <span class="badge badge-tech">Java</span>
+                                        <span class="badge badge-tech">Android</span>
+                                    </div>
+                                </div>
+
+                                <!-- Cargo 2: Desenvolvedora Front-end -->
+                                <div class="p-3 bg-light rounded">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold text-primary mb-0"><i class="fas fa-laptop-code me-1"></i>
+                                            Desenvolvedora Front-end</h6>
+                                        <span class="badge text-bg-light border">nov 2021 | out 2022</span>
+                                    </div>
+                                    <ul class="small mb-2">
+                                        <li>Atuação no desenvolvimento e aprimoramento contínuo do portal web voltado a
+                                            parceiros não correntistas da instituição.
+                                        </li>
+                                        <li>Construção e manutenção de componentes reutilizáveis e interfaces dinâmicas
+                                            com Angular 8, TypeScript e Angular Material.
+                                        </li>
+                                        <li>Evolução de rotas e fluxos da plataforma, com foco na otimização de
+                                            performance front-end e melhoria na experiência do usuário (UX/UI).
+                                        </li>
+                                    </ul>
+                                    <div class="mt-2">
+                                        <small class="fw-bold text-muted me-1">Competências principais:</small>
+                                        <span class="badge badge-tech">Angular 8</span>
+                                        <span class="badge badge-tech">TypeScript</span>
+                                        <span class="badge badge-tech">Angular Material</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Iteris -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingIteris">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseIteris" aria-expanded="false"
+                                    aria-controls="collapseIteris">
+                                <div>
+                                    <strong class="fs-6">Iteris Consultoria — Customer Success & Trainee de
+                                        Suporte</strong>
+                                    <span class="badge bg-secondary ms-2">ago 2020 | nov 2021</span>
+                                    <div class="small text-muted fw-normal mt-1">Gestão de contas estratégicas,
+                                        liderança técnica de equipes e sustentação de aplicações críticas.
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapseIteris" class="accordion-collapse collapse" aria-labelledby="headingIteris"
+                             data-bs-parent="#accordionExperiencias">
+                            <div class="accordion-body">
+
+                                <!-- Cargo 1: Customer Success -->
+                                <div class="mb-3 p-3 bg-light rounded">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold text-primary mb-0"><i class="fas fa-user-tie me-1"></i>
+                                            Customer Success</h6>
+                                        <span class="badge text-bg-light border">mai 2021 | nov 2021</span>
+                                    </div>
+                                    <ul class="small mb-2">
+                                        <li>Gestão de relacionamento e entrega de valor para portfólio de 7 clientes
+                                            estratégicos nos setores de Mercado Financeiro e Telecomunicações.
+                                        </li>
+                                        <li>Liderança da equipe de desenvolvimento dedicada, atuando na gestão de
+                                            pessoas, acompanhamento de metas numéricas, planos de desenvolvimento
+                                            individual (PDI) e avaliação de desempenho.
+                                        </li>
+                                        <li>Alinhamento contínuo entre os objetivos de negócio dos clientes e a
+                                            capacidade de entrega técnica do time, impulsionando indicadores de
+                                            satisfação (NPS/CSAT) e a retenção de contas.
+                                        </li>
+                                    </ul>
+                                    <div class="mt-2">
+                                        <small class="fw-bold text-muted me-1">Competências principais:</small>
+                                        <span class="badge badge-tech">Gestão de Contas</span>
+                                        <span class="badge badge-tech">Gestão de Equipes</span>
+                                        <span class="badge badge-tech">Metodologia Ágil (SCRUM / ITIL)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Cargo 2: Trainee de Suporte -->
+                                <div class="p-3 bg-light rounded">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold text-primary mb-0"><i class="fas fa-headset me-1"></i>
+                                            Trainee de Suporte a Aplicação</h6>
+                                        <span class="badge text-bg-light border">ago 2020 | abr 2021</span>
+                                    </div>
+                                    <ul class="small mb-2">
+                                        <li>Sustentação N2/N3 e manutenção corretiva/evolutiva em sistemas legados e web
+                                            multitecnologias (ASP Classic, SharePoint, JavaScript, Angular e SQL
+                                            Server).
+                                        </li>
+                                        <li>Execução de rotinas operacionais cruciais, como cargas/uploads de dados,
+                                            ajustes de layouts de telas e suporte a banco de dados em produção.
+                                        </li>
+                                        <li>Criação e execução de rotinas automatizadas para monitoramento da saúde do
+                                            ambiente e prevenção de incidentes, garantindo alta disponibilidade e
+                                            eficiência operacional dos sistemas.
+                                        </li>
+                                    </ul>
+                                    <div class="mt-2">
+                                        <small class="fw-bold text-muted me-1">Competências principais:</small>
+                                        <span class="badge badge-tech">Suporte a Aplicações N2/N3</span>
+                                        <span class="badge badge-tech">SQL Server</span>
+                                        <span class="badge badge-tech">Monitoramento de Saúde de Sistemas</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projetos Pessoais & Hackathon com Acordeão -->
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="card card-custom p-4">
+                <h3 class="section-title fs-4"><i class="fas fa-rocket"></i> Projetos Pessoais & Hackathons</h3>
+
+                <div class="accordion" id="accordionProjetos">
+
+                    <!-- Mulheres em Foco / Hackathon -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingMulheres">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseMulheres" aria-expanded="true"
+                                    aria-controls="collapseMulheres">
+                                <div>
+                                    <span class="badge badge-ai mb-1"><i class="fas fa-robot me-1"></i> Hackathon + Inteligência Artificial</span><br>
+                                    <strong class="fs-6">Mulheres em Foco (Evolução no Hackathon Campus Party)</strong>
+                                    <div class="small text-muted fw-normal mt-1">Aplicação de apoio socioemocional e
+                                        segurança da mulher reestruturada com uso de IA.
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapseMulheres" class="accordion-collapse collapse show"
+                             aria-labelledby="headingMulheres" data-bs-parent="#accordionProjetos">
+                            <div class="accordion-body">
+                                <p class="small">
+                                    Nosso projeto tem foco na segurança da mulher, mulheres essas que passam por
+                                    agressões diariamente sem ao menos dizer uma palavra, pelo puro medo de não serem
+                                    compreendidas. Essa aplicação fornece ajuda rápida em situações de perigo, sejam na
+                                    rua ou até mesmo dentro de casa, além de uma rede de encontro para não saírem
+                                    sozinhas e sem esquecer da ajuda de psicólogos e advogados voluntários.
+                                </p>
+                                <div class="p-3 bg-light rounded border-start border-4 border-primary">
+                                    <p class="small mb-1 text-primary fw-bold"><i class="fas fa-star me-1"></i> Destaque
+                                        da Evolução com Inteligência Artificial:</p>
+                                    <p class="small mb-0">
+                                        Durante o Hackathon na Campus Party, utilizamos recursos e fluxos apoiados por
+                                        IA para aprimorar os algoritmos de backend e acelerar a triagem de segurança da
+                                        mulher, elevando o patamar do projeto em eficiência e acessibilidade.
+                                    </p>
+                                </div>
+                                <div class="mt-3">
+                                    <a href="https://github.com/MatsuStefanie/MulheresEmFoco" target="_blank"
+                                       class="btn btn-sm btn-primary rounded-pill">Mulheres em Foco</a>
+                                    <a href="https://github.com/MatsuStefanie/bsbdf-app-backend-hackathon"
+                                       target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Backend
+                                        Hackathon</a>
+                                    <a href="https://github.com/MatsuStefanie/bsbdf-doc-hackathon" target="_blank"
+                                       class="btn btn-sm btn-outline-secondary rounded-pill">Doc Hackathon</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PetSoft -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingPetSoft">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapsePetSoft" aria-expanded="false"
+                                    aria-controls="collapsePetSoft">
+                                <div>
+                                    <strong class="fs-6">PetSoft — Sistema Gerencial para Petshops</strong>
+                                    <span class="badge text-bg-secondary ms-2">ETEC - 2016</span>
+                                    <div class="small text-muted fw-normal mt-1">Sistema de automação comercial, gestão
+                                        financeira e agendas.
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapsePetSoft" class="accordion-collapse collapse" aria-labelledby="headingPetSoft"
+                             data-bs-parent="#accordionProjetos">
+                            <div class="accordion-body">
+                                <p class="small mb-0">
+                                    O PetSoft é um sistema gerencial automatizado e customizado para atender às
+                                    necessidades de nossos clientes com foco no mercado de Petshops. Este sistema tem
+                                    como principais funcionalidades: Cadastros e consultas, relatórios personalizados,
+                                    controle de agenda, de caixa e de vendas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Repositórios do GitHub -->
+                <div class="mt-4 pt-3 border-top">
+                    <h5 class="fw-bold mb-3 fs-6 text-muted">Repositórios no GitHub</h5>
+                    <div class="row g-3" id="repo-list">
+                        <!-- Inserido dinamicamente via JS -->
                     </div>
                 </div>
 
-                <div class="coluna">
-                    <h2>Atualmente</h2>
-                    <p> Modernização de sistemas e migração Cloud (AWS)</p>
-                    <p> Desenvolvimento Java & Kotlin com Spring Boot</p>
-                    <p> Infraestrutura como código (Terraform & Docker)</p>
-                    <p> Testes automatizados e arquitetura de microsserviços</p>
-                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <div class="coluna">
-                    <h2>Sobre Mim</h2>
-                    <p>Desenvolvedora focada em soluções backend robustas e sistemas distribuídos. Apaixonada por tecnologia, aprendizado contínuo, cultura Geek/Gamer e trocas de conhecimento no universo do software.</p>
-                </div>
+<!-- Script GitHub API -->
+<script>
+    function getRepositories(username) {
+        fetch(`https://api.github.com/users/${username}/repos`)
+            .then(response => response.json())
+            .then(data => {
+                data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+                const repoList = document.getElementById('repo-list');
+                const maxRepos = Math.min(data.length, 4);
 
-                <a href="#bloco2" class="setas"><button>&gt;</button></a>
-            </section>
+                for (let i = 0; i < maxRepos; i++) {
+                    const repo = data[i];
+                    const col = document.createElement('div');
+                    col.classList.add('col-md-3', 'col-sm-6');
 
-            <!-- BLOCO 2: Formações, Certificações e Habilidades -->
-            <section class="row bloco" id="bloco2">
-                <a href="#bloco1" class="setas"><button>&lt;</button></a>
-
-                <div class="coluna">
-                    <h2>Formação Acadêmica</h2>
-                    <div class="card-item">
-                        <h4>Pós-Graduação em Projetos em Cloud Computing</h4>
-                        <p>2025 - Presente</p>
-                    </div>
-                    <div class="card-item">
-                        <h4>Universidade Nove de Julho</h4>
-                        <p>Téc. Redes de Computadores (2017 - 2021)</p>
-                    </div>
-                    <div class="card-item">
-                        <h4>Etec de Guaianazes</h4>
-                        <p>Téc. Desenvolvimento de Sistemas (2015 - 2016)</p>
-                    </div>
-                </div>
-
-                <div class="coluna">
-                    <h2>Certificações</h2>
-                    <div class="card-item">
-                        <h4>AWS Certified Cloud Practitioner</h4>
-                        <p>Emissão: Janeiro / 2026</p>
-                        <p>Credencial focada no conhecimento fundamental de arquitetura e serviços AWS Cloud.</p>
-                    </div>
-                </div>
-
-                <div class="coluna">
-                    <h2>Habilidades Técnicas</h2>
-                    <button class="accordion">Linguagens & Frameworks</button>
-                    <div class="panel">
-                        <ul>
-                            <li>Java & Kotlin</li>
-                            <li>Spring Boot & Spring Framework</li>
-                            <li>TypeScript / JavaScript</li>
-                        </ul>
-                    </div>
-
-                    <button class="accordion">Cloud & DevOps</button>
-                    <div class="panel">
-                        <ul>
-                            <li>AWS (EC2, S3, ECS, Lambda)</li>
-                            <li>Docker & Containerização</li>
-                            <li>Terraform (IaC)</li>
-                        </ul>
-                    </div>
-
-                    <button class="accordion">Bancos & Ferramentas</button>
-                    <div class="panel">
-                        <ul>
-                            <li>SQL e Bancos Relacionais</li>
-                            <li>Git & GitHub</li>
-                            <li>IntelliJ IDEA & VS Code</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <a href="#bloco1" class="setas"><button>&gt;</button></a>
-            </section>
-        </section>
-    </main>
-
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        for (var i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
+                    col.innerHTML = `
+                            <div class="card h-100 p-3 border-0 bg-light">
+                                <div class="d-flex justify-content-between">
+                                    <span class="badge text-bg-dark mb-2">${repo.language || 'Geral'}</span>
+                                </div>
+                                <h6 class="fw-bold text-truncate">${repo.name}</h6>
+                                <p class="small text-muted text-truncate">${repo.description || 'Sem descrição'}</p>
+                                <a href="${repo.html_url}" target="_blank" class="btn btn-link p-0 text-decoration-none small text-purple">Acessar repositório &rarr;</a>
+                            </div>
+                        `;
+                    repoList.appendChild(col);
                 }
-            });
-        }
-    </script>
-</body>
+            })
+            .catch(error => console.error('Erro ao buscar repositórios:', error));
+    }
 
+    getRepositories('MatsuStefanie');
+</script>
+
+</body>
 </html>
